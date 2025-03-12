@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./routes/Home";
+import Home from "./routes/Home.jsx";
 import { GlobalProvider } from "./Contexts/GlobalContext";
-import Scanner from "./Routes/Scanner";
+import Scanner from "./Routes/Scanner.jsx";
 
 
 const AppRoutes = () => {
