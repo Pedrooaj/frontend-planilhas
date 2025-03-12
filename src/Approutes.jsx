@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { GlobalProvider } from "./contexts/GlobalContext.jsx";
+import GlobalProvider from "./contexts/GlobalContext.jsx";
 import Scanner from "./routes/Scanner.jsx";
 import Home from "./routes/Home.jsx"
 
