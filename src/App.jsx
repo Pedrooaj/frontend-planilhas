@@ -22,7 +22,7 @@ function App() {
       qrbox: { width: 250, height: 250 },
       disableFlip: true,
       videoConstraints: {
-        facingMode: { exact: "environment" }
+        facingMode: { ideal: "environment" }
       }
     }, false);
   
