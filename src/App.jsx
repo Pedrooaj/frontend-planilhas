@@ -21,7 +21,7 @@ function App() {
       fps: 10,
       qrbox: { width: 250, height: 250 },
       videoConstraints: {
-        facingMode: { exact: "environment" }
+        facingMode: { ideal: "environment" }
       }
     }, false);
   
@@ -42,11 +42,11 @@ function App() {
 
   }, [])
   return (
-    <>
+    <Container>
     <div id="reader"></div>
     <h1>{barcode}</h1>
     
-    </>
+    </Container>
   );
 }
 
