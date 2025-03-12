@@ -20,13 +20,13 @@ function App() {
       console.warn(`Code scan error = ${error}`);
     }
 
-
-  
-    scanner.render(onScanSuccess, onScanFailure)
-
     if(barcode){
       scanner.clear().catch(error => console.log("Erro ao fechar scanner"))
     }
+    
+    scanner.render(onScanSuccess, onScanFailure)
+
+
   }, [])
 
   return (
