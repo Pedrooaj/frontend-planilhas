@@ -11,12 +11,13 @@ function App() {
       fps: 10,
       qrbox: { width: 250, height: 250 },
       videoConstraints: {
-        facingMode: "environment"
+        facingMode: { exact: "environment" }
       }
     }, false);
   
     function onScanSuccess(decodedText, decodedResult) {
       setBarcode(decodedText);
+      scanner.pause()
     }
   
     function onScanFailure(error) {
@@ -28,7 +29,6 @@ function App() {
     }
     
     scanner.render(onScanSuccess, onScanFailure)
-
 
   }, [])
 
