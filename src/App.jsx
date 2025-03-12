@@ -2,6 +2,16 @@ import { useEffect } from "react";
 import "./App.css";
 import { Html5QrcodeScanner } from "html5-qrcode";
 import { useState } from "react";
+import styled from "styled-components";
+
+
+const Container = styled.div`
+
+&input{
+  display: none;
+}
+`
+
 function App() {
 
   const [barcode, setBarcode] = useState("");
@@ -31,11 +41,11 @@ function App() {
     scanner.render(onScanSuccess, onScanFailure)
 
   }, [])
-
   return (
     <>
     <div id="reader"></div>
     <h1>{barcode}</h1>
+    
     </>
   );
 }
