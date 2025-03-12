@@ -27,7 +27,7 @@ const Html5QrcodePlugin = (props) => {
             const cameras = await Html5Qrcode.getCameras();
             if(cameras && cameras.length > 0){
                 const backCamera = cameras.find(camera => camera.id.includes("back") || camera.label.toLocaleLowerCase().includes("back"))
-                const cameraId = backCamera ? backCamera.id : cameras[0].id;
+                backCamera ? backCamera.id : cameras[0].id;
             }
         }
 
@@ -39,6 +39,7 @@ const Html5QrcodePlugin = (props) => {
         const html5QrcodeScanner = new Html5QrcodeScanner(qrcodeRegionId, config, verbose);
         getCameras();
         html5QrcodeScanner.render(props.qrCodeSuccessCallback, props.qrCodeErrorCallback);
+    
 
         return () => {
             html5QrcodeScanner.clear().catch(error => {
