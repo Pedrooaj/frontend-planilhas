@@ -1,15 +1,13 @@
 import { useEffect } from "react";
 import "./App.css";
-import { Html5QrcodeScanner } from "html5-qrcode";
+import { Html5Qrcode, Html5QrcodeScanner } from "html5-qrcode";
 import { useState } from "react";
 import styled from "styled-components";
 
 
 const Container = styled.div`
 
-.html5-qrcode-camera-selector {
-    display: none;
-  }
+
 
 `
 
@@ -18,19 +16,15 @@ function App() {
   const [barcode, setBarcode] = useState("");
 
   useEffect(() => {
-    const scanner = new Html5QrcodeScanner("reader", {
-      fps: 10,
-      qrbox: { width: 250, height: 250 },
-      disableFlip: true,
-      videoConstraints: {
-        facingMode: { ideal: "environment" }
-      },
-      
-    }, false);
+    const scanner = new Html5Qrcode("reader");
   
     function onScanSuccess(decodedText, decodedResult) {
       setBarcode(decodedText);
-      scanner.clear().catch(error => console.log("Erro ao fechar scanner"))
+      scanner.stop().then((ignore) => {
+        // Scanner parado com sucesso
+      }).catch((err) => {
+        // para caso ocorra um erro
+      });
     }
   
     function onScanFailure(error) {
@@ -38,7 +32,12 @@ function App() {
     }
 
     
-    scanner.render(onScanSuccess, onScanFailure)
+    scanner.start({ facingMode: { exact: "environment" }}, {
+      fps: 10,
+      qrbox: { height: 250, width: 250 },
+      disableFlip: false
+
+    }, onScanSuccess)
 
   }, [])
   return (
