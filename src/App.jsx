@@ -18,6 +18,7 @@ function App() {
         disableFlip={false}
         qrCodeSuccessCallback={onNewScanResult}
       />
+      <p>{decodedResults}</p>
     </>
   );
 }
