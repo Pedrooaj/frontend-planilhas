@@ -1,26 +1,38 @@
+import { useEffect } from "react";
 import "./App.css";
-import Html5QrcodePlugin from "./services/Html5QrcodePlugin";
+import { Html5QrcodeScanner } from "html5-qrcode";
 import { useState } from "react";
-import ResultContainerPlugin from "./services/ResultContainerTable";
-
 function App() {
-  const [decodedResults, setDecodedResults] = useState([]);
-  const onNewScanResult = (decodedText, decodedResult) => {
-    console.log("App [result]", decodedResult);
-    setDecodedResults((prev) => [...prev, decodedResult]);
-  };
+
+  const [barcode, setBarcode] = useState("");
+
+  useEffect(() => {
+    const scanner = new Html5QrcodeScanner("reader", {
+      fps: 60,
+      qrbox: { width: 250, height: 250 }
+    }, false);
+  
+    function onScanSuccess(decodedText, decodedResult) {
+      setBarcode(decodedText);
+    }
+  
+    function onScanFailure(error) {
+      console.warn(`Code scan error = ${error}`);
+    }
+
+
+  
+    scanner.render(onScanSuccess, onScanFailure)
+
+    if(barcode){
+      scanner.clear().catch(error => console.log("Erro ao fechar scanner"))
+    }
+  }, [])
 
   return (
     <>
-     <div className="App-section-title"> Html5-qrcode React demo</div>
-      <Html5QrcodePlugin
-        fps={30}
-        qrbox={250}
-        disableFlip={false}
-        qrCodeSuccessCallback={onNewScanResult}
-        
-      />
-      <ResultContainerPlugin results={decodedResults} />
+    <div id="reader"></div>
+    <h1>{barcode}</h1>
     </>
   );
 }
