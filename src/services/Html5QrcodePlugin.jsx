@@ -1,4 +1,4 @@
-import { Html5QrcodeScanner } from "html5-qrcode";
+import { Html5Qrcode, Html5QrcodeScanner } from "html5-qrcode";
 import { useEffect } from "react";
 
 const qrcodeRegionId = "html5qr-code-full-region";
@@ -22,12 +22,22 @@ const createConfig = (props) => {
 
 const Html5QrcodePlugin = (props) => {
     useEffect(() => {
+
+        const getCameras = async () => {
+            const cameras = await Html5Qrcode.getCameras();
+            if(cameras && cameras.length > 0){
+                const backCamera = cameras.find(camera => camera.id.includes("back") || camera.label.toLocaleLowerCase().includes("back"))
+                const cameraId = backCamera ? backCamera.id : cameras[0].id;
+            }
+        }
+
         const config = createConfig(props);
         const verbose = props.verbose === true;
         if(!(props.qrCodeSuccessCallback)){
             throw "qrCodeSuccessCallback e requerida.";
         }
         const html5QrcodeScanner = new Html5QrcodeScanner(qrcodeRegionId, config, verbose);
+        getCameras();
         html5QrcodeScanner.render(props.qrCodeSuccessCallback, props.qrCodeErrorCallback);
 
         return () => {
