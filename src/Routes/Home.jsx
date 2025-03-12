@@ -1,7 +1,6 @@
 import { useContext, useEffect } from "react";
-import { GlobalContext } from "../contexts/GlobalContext";
+import { GlobalContext } from "../context/GlobalContext";
 import styled from "styled-components";
-
 
 const Container = styled.div`
     width: 100vw;
