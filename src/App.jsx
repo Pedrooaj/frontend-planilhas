@@ -6,13 +6,10 @@ import styled from "styled-components";
 
 
 const Container = styled.div`
-select{
-  display: none;
-}
 
-p{
-  display: none;
-}
+.html5-qrcode-camera-selector {
+    display: none;
+  }
 
 `
 
@@ -27,7 +24,8 @@ function App() {
       disableFlip: true,
       videoConstraints: {
         facingMode: { ideal: "environment" }
-      }
+      },
+      
     }, false);
   
     function onScanSuccess(decodedText, decodedResult) {
