@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { GlobalContext } from "../Contexts/GlobalContext";
+import { GlobalContext } from "../contexts/GlobalContext";
 import styled from "styled-components";
 
 
