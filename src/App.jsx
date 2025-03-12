@@ -7,7 +7,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
 
-&input{
+datalist{
   display: none;
 }
 `
