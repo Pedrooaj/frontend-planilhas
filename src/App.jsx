@@ -10,6 +10,10 @@ select{
   display: none;
 }
 
+p{
+  display: none;
+}
+
 `
 
 function App() {
