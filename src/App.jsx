@@ -28,16 +28,13 @@ function App() {
   
     function onScanSuccess(decodedText, decodedResult) {
       setBarcode(decodedText);
-      scanner.pause()
+      scanner.clear().catch(error => console.log("Erro ao fechar scanner"))
     }
   
     function onScanFailure(error) {
       console.warn(`Code scan error = ${error}`);
     }
 
-    if(barcode){
-      scanner.clear().catch(error => console.log("Erro ao fechar scanner"))
-    }
     
     scanner.render(onScanSuccess, onScanFailure)
 
