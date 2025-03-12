@@ -6,10 +6,10 @@ import styled from "styled-components";
 
 
 const Container = styled.div`
-
-datalist{
+select{
   display: none;
 }
+
 `
 
 function App() {
@@ -44,6 +44,7 @@ function App() {
     <div id="reader"></div>
     <h1>{barcode}</h1>
     
+
     </Container>
   );
 }
