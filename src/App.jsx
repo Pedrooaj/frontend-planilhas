@@ -20,7 +20,10 @@ function App() {
     const scanner = new Html5QrcodeScanner("reader", {
       fps: 10,
       qrbox: { width: 250, height: 250 },
-      disableFlip: true
+      disableFlip: true,
+      videoConstraints: {
+        facingMode: { exact: "environment" }
+      }
     }, false);
   
     function onScanSuccess(decodedText, decodedResult) {
