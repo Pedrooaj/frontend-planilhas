@@ -1,6 +1,7 @@
 import "./App.css";
 import Html5QrcodePlugin from "./services/Html5QrcodePlugin";
 import { useState } from "react";
+import ResultContainerPlugin from "./services/ResultContainerTable";
 
 function App() {
   const [decodedResults, setDecodedResults] = useState([]);
@@ -18,7 +19,7 @@ function App() {
         disableFlip={false}
         qrCodeSuccessCallback={onNewScanResult}
       />
-      <p>{decodedResults}</p>
+      <ResultContainerPlugin results={decodedResults} />
     </>
   );
 }
