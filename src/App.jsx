@@ -18,6 +18,7 @@ function App() {
         qrbox={250}
         disableFlip={false}
         qrCodeSuccessCallback={onNewScanResult}
+        disableCameraSelection={true}
       />
       <ResultContainerPlugin results={decodedResults} />
     </>
