@@ -14,7 +14,7 @@ function App() {
     <>
      <div className="App-section-title"> Html5-qrcode React demo</div>
       <Html5QrcodePlugin
-        fps={10}
+        fps={30}
         qrbox={250}
         disableFlip={false}
         qrCodeSuccessCallback={onNewScanResult}
