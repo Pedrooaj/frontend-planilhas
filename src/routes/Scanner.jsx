@@ -69,7 +69,7 @@ function Scanner() {
   return (
     <Container>
       <div id="reader"></div>
-      {carregando && <Spinner animation="border" role="status"><span className="visually-hidden">Loading...</span></Spinner>}
+      <Spinner style={{ display: carregando ? "block" : "none" }} animation="border" role="status"><span className="visually-hidden">Loading...</span></Spinner>
     </Container>
   );
 }
