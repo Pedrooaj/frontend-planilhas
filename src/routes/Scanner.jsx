@@ -3,8 +3,20 @@ import { Html5Qrcode, Html5QrcodeSupportedFormats } from "html5-qrcode";
 import styled from "styled-components";
 import { GlobalContext } from "../context/Globalcontext";
 import { useNavigate } from "react-router-dom";
+import { Spinner } from "react-bootstrap";
 
-const Container = styled.div``;
+const Container = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    #reader{
+        width: 100%;
+        
+    }
+`;
 
 function Scanner() {
   const { adicionarPatrimonio } = useContext(GlobalContext);
@@ -23,7 +35,9 @@ function Scanner() {
       try {
         if (formats.includes(decodedResult.result.format.format)) {
           adicionarPatrimonio(decodedText);
-          await scanner.stop();
+          await scanner.stop()
+          .then(() => console.log("Scanner fechado com sucesso"))
+          .catch((error) => console.log("Erro ao chegar scanner ", error));
           navigate("/");
           
         } else {
@@ -31,17 +45,10 @@ function Scanner() {
         }
       } catch (error) {
         throw error;
-      } /* finally {
-        scanner.stop().then(() => {
-          console.log("Scanner parado com sucesso");
-        }).catch((err) => {
-          console.error("Erro ao parar Scanner: ", err);
-        });
-      }; */
+      }
     };
 
-    scanner
-      .start(
+    scanner.start(
         { facingMode: "environment", deviceId: undefined }, // Corrigido para passar a string 'environment'
         {
           fps: 12, // Frames per second
@@ -60,8 +67,8 @@ function Scanner() {
 
   return (
     <Container>
-      {carregando && <p>Carregando Scanner...</p>}
       <div id="reader"></div>
+      {carregando && <Spinner animation="border" role="status"><span className="visually-hidden">Loading...</span></Spinner>}
     </Container>
   );
 }
