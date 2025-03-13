@@ -19,24 +19,27 @@ function App() {
     ]
 
     const onScanSuccess = (decodedText, decodedResult) => {
-      if(formats.includes(decodedResult.result.format.format)){
-        setBarcode(decodedText);
-
-
-      }else{
-        console.warn("Formato não permitido")
+      try {
+        if(formats.includes(decodedResult.result.format.format)){
+          setBarcode(decodedText);
+        }
+      } catch (error) {
+        throw error;
+      } finally {
+        scanner.stop().then(() => {
+          console.log("Scanner parado com sucesso");
+        }).catch((err) => {
+          console.error("Erro ao parar Scanner: ", err);
+        });
+      };
       }
 
+
       
       
 
 
-      scanner.stop().then(() => {
-        console.log("Scanner parado com sucesso");
-      }).catch((err) => {
-        console.error("Erro ao parar Scanner: ", err);
-      });
-    };
+ 
 
     const onScanFailure = (error) => {
       console.log(`Erro ao realizar Scan: ${error}`);
