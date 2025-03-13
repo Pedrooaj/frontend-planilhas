@@ -12,7 +12,10 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
 
-
+    #reader{
+        width: 100%;
+    }
+    
 `;
 
 function Scanner() {
@@ -55,6 +58,7 @@ function Scanner() {
             width: { ideal: 1920, min: 1280 },
             height: { ideal: 1080, min: 720 },
             frameRate: { ideal: 60 },
+    
           },
         },
         onScanSuccess
