@@ -8,11 +8,9 @@ const Container = styled.div`
   position: relative;
   
 
-  &#reader{
-    position: absolute;
+  #reader{
     width: 100%;
     height: 100%;
-
   }
 `;
 
@@ -44,21 +42,9 @@ function App() {
         });
       };
       }
-
-
-      
-      
-
-
- 
-
     const onScanFailure = (error) => {
       console.log(`Erro ao realizar Scan: ${error}`);
     };
-
-
-
-
 
     scanner.start(
       { facingMode: "environment", deviceId: undefined}, // Corrigido para passar a string 'environment'
