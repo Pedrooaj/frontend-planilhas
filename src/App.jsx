@@ -65,7 +65,7 @@ function App() {
       { facingMode: "environment", deviceId: undefined}, // Corrigido para passar a string 'environment'
       {
         fps: 10, // Frames per second
-        qrbox: { height: 200, width: 200 }, // QR code scanning box size
+        qrbox: { height: 100, width: 275 }, // QR code scanning box size
         disableFlip: false,
         videoConstraints: {
           width: { ideal: 1920 },
@@ -86,6 +86,7 @@ function App() {
   return (
     <Container>
       <div id="reader" ></div>
+      {barcode ? <p>{barcode}</p>: null}
     </Container>
   );
 }
