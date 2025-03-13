@@ -73,7 +73,7 @@ function Scanner() {
 
 
     scanner.start(
-        { deviceId: backCamera.deviceId, facingMode: "environment"  },
+        { deviceId: backCamera.deviceId},
         {
           fps: 12, // Frames per second
           qrbox: { height: 150, width: 275 }, // QR code scanning box size
