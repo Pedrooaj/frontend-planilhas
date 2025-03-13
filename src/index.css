@@ -42,15 +42,5 @@ body {
   overflow: hidden; /* Impede o scroll */
 }
 
-/* Remover bordas padrões de tabelas e inputs */
-table {
-  border-collapse: collapse;
-}
 
-button,
-input,
-textarea {
-  border: none;
-  background: transparent;
-  outline: none;
-}
+

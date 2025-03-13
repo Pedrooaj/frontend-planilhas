@@ -22,10 +22,6 @@ function Scanner() {
     const onScanSuccess = (decodedText, decodedResult) => {
       try {
         if (formats.includes(decodedResult.result.format.format)) {
-          
-          scanner.stop().catch((error) => {
-            console.log("Erro ao encerrar scanner");
-          })
           adicionarPatrimonio(decodedText);
           navigate("/");
      
