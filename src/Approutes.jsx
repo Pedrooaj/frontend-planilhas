@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Scanner from "./routes/Scanner"
 import GlobalProvider from "./context/Globalcontext"
+import Lista from "./routes/Lista"
 
 const AppRoutes = () => {
     return(
@@ -8,7 +9,7 @@ const AppRoutes = () => {
         <Router>
             <Routes>
                 <Route path="/scanner" element={<Scanner />} />
-                <Route index element={<h1>Rota de lista</h1>} />
+                <Route index element={<Lista />} />
             </Routes>
         </Router>
         </GlobalProvider>

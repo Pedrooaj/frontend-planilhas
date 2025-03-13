@@ -24,6 +24,9 @@ function Scanner() {
       try {
         if (formats.includes(decodedResult.result.format.format)) {
           adicionarPatrimonio(decodedText);
+          scanner.stop().catch((error) => {
+            toast.warn("Erro ao adicionar patrimônio na lista...", { autoClose: 3000, position: "bottom-center" })
+          })
           navigate("/");
           toast.success(`Patrimônio adicionado a lista: ${decodedText}`, {
             autoClose: 3000,
