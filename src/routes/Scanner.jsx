@@ -7,10 +7,9 @@ import { useNavigate } from "react-router-dom";
 const Container = styled.div``;
 
 function Scanner() {
-    const { adicionarPatrimonio } = useContext(GlobalContext);
-    const [carregando, setCarregando] = useState(true);
-    const navigate = useNavigate();
-
+  const { adicionarPatrimonio } = useContext(GlobalContext);
+  const navigate = useNavigate();
+  const [carregando, setCarregando] = useState(true);
 
   useEffect(() => {
     const scanner = new Html5Qrcode("reader");
@@ -25,8 +24,7 @@ function Scanner() {
         if (formats.includes(decodedResult.result.format.format)) {
           adicionarPatrimonio(decodedText);
           navigate("/");
-     
-
+          scanner.stop();
         } else {
           console.log("Formato do código de barras não suportado");
         }
@@ -41,36 +39,28 @@ function Scanner() {
       }; */
     };
 
-    setTimeout(() => {
-        scanner.start(
-            { facingMode: "environment", deviceId: undefined }, // Corrigido para passar a string 'environment'
-            {
-              fps: 12, // Frames per second
-              qrbox: { height: 150, width: 275 }, // QR code scanning box size
-              disableFlip: false,
-              videoConstraints: {
-                width: { ideal: 1920, min: 1280 },
-                height: { ideal: 1080, min: 720 },
-                frameRate: { ideal: 60 },
-              },
-            },
-            onScanSuccess
-          ).then(() => setCarregando(false)).catch((err) => console.error("Erro ao iniciar Scanner: ", err));
-    }, 500)
-  
-
-    return () => {
-        scanner.stop()
-            .then(() => console.log("Scanner fechado com sucesso!"))
-            .catch((err) => console.error("Erro ao fechar scanner!", err)
-            )
-    }
+    scanner
+      .start(
+        { facingMode: "environment", deviceId: undefined }, // Corrigido para passar a string 'environment'
+        {
+          fps: 12, // Frames per second
+          qrbox: { height: 150, width: 275 }, // QR code scanning box size
+          disableFlip: false,
+          videoConstraints: {
+            width: { ideal: 1920, min: 1280 },
+            height: { ideal: 1080, min: 720 },
+            frameRate: { ideal: 60 },
+          },
+        },
+        onScanSuccess
+      )
+      .then(() => setCarregando(false));
   }, []);
 
   return (
     <Container>
-      {carregando ? <p>Carregando Scanner...</p> : <div id="reader"></div>}
-
+      {carregando && <p>Carregando Scanner...</p>}
+      <div id="reader" style={{display: carregando ? "none": "block"}}></div>
     </Container>
   );
 }
