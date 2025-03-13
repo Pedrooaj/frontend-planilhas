@@ -24,15 +24,20 @@ const GlobalProvider = ({ children }) => {
     if (patrimonio.length > 8) {
       toast.error("Patrimônio Inválido", { autoClose: 3000, position: "bottom-center" });
     } else if (!["60", "87", "83", "087"].some((prefixo) => patrimonio.startsWith(prefixo))) {
+      // verifica se o prefixo e válido
       toast.error("Patrimônio Inválido 2", { autoClose: 3000, position: "bottom-center" });
     }
 
+
+    // formata os patrimônios antes de adicionar a lista
     if(["87", "83"].includes(patrimonio.slice(0, 2))){
       patrimonio = patrimonio.slice(2);
     }else if("087" === (patrimonio.slice(0,3))){
       patrimonio = patrimonio.slice(3);
     }
 
+
+    // verifica se o patrimônio ja está na lista
     if (!lista.patrimonios.includes(patrimonio)) {
       setLista((prevLista) => ({
         ...prevLista,
