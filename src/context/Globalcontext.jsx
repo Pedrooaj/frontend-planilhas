@@ -24,13 +24,13 @@ const GlobalProvider = ({ children }) => {
     if (patrimonio.length > 8) {
       toast.error("Patrimônio Inválido", { autoClose: 3000, position: "bottom-center" });
 
-    } else if (!["60", "87", "83"].includes(patrimonio.slice(0, 2)) || !"087".includes(patrimonio.slice(0,3))) {
+    } else if (!["60", "87", "83"].includes(patrimonio.slice(0, 2)) || !["087"].includes(patrimonio.slice(0,3))) {
       toast.error("Patrimônio Inválido ", { autoClose: 3000, position: "bottom-center" });
     }
 
-    if(["87", "83"].includes(patrimonio.slice(0, 2))){
+    if(["87", "83"].includes(patrimonio.slice(2))){
       patrimonio = patrimonio.slice(0,2);
-    }else if("087".includes(patrimonio.slice(0,3))){
+    }else if("087".includes(patrimonio.slice(3))){
       patrimonio = patrimonio.slice(0,3);
     }
 
