@@ -5,14 +5,14 @@ import styled from "styled-components";
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   
 
   #reader{
     width: 100%;
     height: 100%;
-    position: absolute;
-
   }
 
 `;
