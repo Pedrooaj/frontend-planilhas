@@ -13,8 +13,20 @@ function App() {
   useEffect(() => {
     const scanner = new Html5Qrcode("reader");
 
+    const formats = [
+      Html5QrcodeSupportedFormats.CODE_128,
+      Html5QrcodeSupportedFormats.ITF
+    ]
+
     const onScanSuccess = (decodedText, decodedResult) => {
-      setBarcode(decodedText);
+      if(formats.includes(decodedResult.format)){
+        setBarcode(decodedText);
+      }else{
+        console.warn("Formato não permitido")
+      }
+      
+
+
       scanner.stop().then(() => {
         console.log("Scanner parado com sucesso");
       }).catch((err) => {
@@ -28,16 +40,15 @@ function App() {
 
 
 
+
+
     scanner.start(
       { facingMode: "environment" }, // Corrigido para passar a string 'environment'
       {
         fps: 10, // Frames per second
         qrbox: { height: 250, width: 250 }, // QR code scanning box size
         disableFlip: false,
-        supportedScanTypes: [
-          Html5QrcodeSupportedFormats.ITF,    // Apenas QR Codes
-          Html5QrcodeSupportedFormats.CODE_128,   // Apenas Code 128
-        ]
+
       },
       onScanSuccess,
       onScanFailure
