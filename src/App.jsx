@@ -12,7 +12,7 @@ const Container = styled.div`
 
   #reader{
     width: 100%;
-    height: auto;
+    height: 100%;
   }
 
 
