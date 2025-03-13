@@ -21,11 +21,11 @@ const GlobalProvider = ({ children }) => {
   };
   const erroToast = toast.error("Patrimônio Inválido",{ autoClose: 3000, position: "bottom-center" });
   const adicionarPatrimonio = (patrimonio) => {
-    if (patrimonio.length > 8) {
-        erroToast()
-    }else if(!["60", "87", "83"].includes(patrimonio.slice(0,2))){
-        erroToast()
-    }else{
+    // if (patrimonio.length > 8) {
+    //     erroToast()
+    // }else if(!["60", "87", "83"].includes(patrimonio.slice(0,2))){
+    //     erroToast()
+    // }else{
         if (!lista.patrimonios.includes(patrimonio)) {
             setLista((prevLista) => ({
               ...prevLista,
@@ -41,7 +41,7 @@ const GlobalProvider = ({ children }) => {
               position: "bottom-center",
             });
           }
-    }
+    // }
 
    
   };
