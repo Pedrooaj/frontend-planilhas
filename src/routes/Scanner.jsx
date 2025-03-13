@@ -6,15 +6,22 @@ import { useNavigate } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
 
 const Container = styled.div`
+      width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  #reader {
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  }
 
-    #reader{
-        width: 100%;
-    }
+  video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+  }
     
 `;
 
@@ -69,7 +76,7 @@ function Scanner() {
   return (
     <Container>
       <div id="reader"></div>
-      <Spinner style={{ display: carregando ? "block" : "none" }} animation="border" role="status"><span className="visually-hidden">Loading...</span></Spinner>
+      {carregando && <Spinner animation="border" role="status"><span className="visually-hidden">Loading...</span></Spinner>}
     </Container>
   );
 }
