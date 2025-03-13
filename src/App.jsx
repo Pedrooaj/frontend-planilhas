@@ -44,7 +44,7 @@ function App() {
     scanner.start(
       { facingMode: "environment", deviceId: undefined}, // Corrigido para passar a string 'environment'
       {
-        fps: 1, // Frames per second
+        fps: 10, // Frames per second
         qrbox: { height: 150, width: 275 }, // QR code scanning box size
         disableFlip: false,
         videoConstraints: {
