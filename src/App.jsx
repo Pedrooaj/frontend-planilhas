@@ -71,9 +71,9 @@ function App() {
           width: { ideal: 1920 },
           height: { ideal: 1080 },
           frameRate: { ideal: 60 },
-          aspectRatio: { ideal: 9/16 }
+          
         },
-        aspectRatio: 9 / 16
+        
         
 
       },
