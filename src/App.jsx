@@ -12,13 +12,14 @@ const Container = styled.div`
   width: 100vw;
   height: 100vh;
   position: absolute;
-  top: 0;
-  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 
 #reader video {
-  width: 100%;
-  height: 100%;
+
   object-fit: cover; /* Garante que o vídeo cubra toda a tela */
 }
   
@@ -73,7 +74,7 @@ function App() {
           frameRate: { ideal: 60 },
           
         },
-        
+        aspectRatio: 9 / 16
         
 
       },
@@ -86,7 +87,7 @@ function App() {
   return (
     <Container>
       <div id="reader" ></div>
-      {barcode ? <p>{barcode}</p>: null}
+   
     </Container>
   );
 }
