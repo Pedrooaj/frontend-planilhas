@@ -24,7 +24,7 @@ const GlobalProvider = ({ children }) => {
     if (patrimonio.length > 8) {
       toast.error("Patrimônio Inválido if 1",{ autoClose: 3000, position: "bottom-center" });
       
-    }else if(!["60", "87", "83", "087"].includes(patrimonio.slice(0,2))){
+    }else if(!["60", "87", "83"].includes(patrimonio.slice(0,2))){
       toast.error("Patrimônio Inválido if 2",{ autoClose: 3000, position: "bottom-center" });
     }else{
       if(["87","83","087"].includes(patrimonio.slice(0,2))){
