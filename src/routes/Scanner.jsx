@@ -55,6 +55,13 @@ function Scanner() {
       },
       onScanSuccess
     );
+
+    return () => {
+        scanner.stop()
+            .then(() => console.log("Scanner fechado com sucesso!"))
+            .catch((err) => console.error("Erro ao fechar scanner!", err)
+            )
+    }
   }, []);
 
   return (
