@@ -56,8 +56,18 @@ function Scanner() {
       }
     };
 
+
+        
+  
+
+
+    navigator.mediaDevices.enumerateDevices().then((devices) => {
+        const backCamera = devices.find( 
+            (device) => device.kind === "videoinput" && device.label.toLocaleLowerCase().includes("back")
+        )
+
     scanner.start(
-        { facingMode: "environment", deviceId: undefined }, // Corrigido para passar a string 'environment'
+        { deviceId: backCamera, facingMode: "environment"  },
         {
           fps: 12, // Frames per second
           qrbox: { height: 150, width: 275 }, // QR code scanning box size
@@ -66,13 +76,15 @@ function Scanner() {
             width: { ideal: 1920, min: 1280 },
             height: { ideal: 1080, min: 720 },
             frameRate: { ideal: 60 },
-    
+            
           },
         },
         onScanSuccess
       )
       .then(() => setCarregando(false));
-  }, []);
+  
+    })
+    }, []);
 
   return (
     <Container>
