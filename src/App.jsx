@@ -10,6 +10,11 @@ const Container = styled.div`
   justify-content: center;
   
 
+  #reader{
+    width: 100%;
+    height: auto;
+  }
+
 
 
 `;
