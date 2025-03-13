@@ -23,7 +23,9 @@ function App() {
       try {
         if(formats.includes(decodedResult.result.format.format)){
           setBarcode(decodedText);
-          toast.success(`Patrimônio adicionado a lista: ${decodedText}`, { autoClose: 3000, position: "bottom-center" })
+          if(decodedText !== barcode){
+            toast.success(`Patrimônio adicionado a lista: ${decodedText}`, { autoClose: 3000, position: "bottom-center" })
+          }
         }else{
           console.log("Formato do código de barras não suportado");
         }
