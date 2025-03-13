@@ -5,9 +5,9 @@
 }
 
 body {
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
+  width: 100vw; /* Ocupa toda a largura da tela */
+  height: 100vh; /* Ocupa toda a altura da tela */
+  overflow: hidden; /* Impede o scroll */
   background-color: gray;
 }
 
@@ -19,7 +19,7 @@ body {
 #reader {
   width: 100vw; /* Ocupa toda a largura da tela */
   height: 100vh; /* Ocupa toda a altura da tela */
-  position: relative; /* Necessário para posicionar o qrbox no centro */
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,5 +30,5 @@ body {
   height: 250px;
   border: 2px solid red;
   position: absolute;
-  z-index: 10; /* Para garantir que a caixa fique visível */
+  z-index: 10;
 }
