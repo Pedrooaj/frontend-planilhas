@@ -23,7 +23,7 @@ const GlobalProvider = ({ children }) => {
   const adicionarPatrimonio = (patrimonio) => {
     if (patrimonio.length > 8) {
       toast.error("Patrimônio Inválido", { autoClose: 3000, position: "bottom-center" });
-    } else if (!["60", "87", "83", "087"].includes(patrimonio.slice(0, 2))) {
+    } else if (!["60", "87", "83", "087"].some((prefixo) => patrimonio.startsWith(prefixo))) {
       toast.error("Patrimônio Inválido 2", { autoClose: 3000, position: "bottom-center" });
     }
 
