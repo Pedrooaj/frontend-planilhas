@@ -9,6 +9,8 @@ body {
   height: 100vh; /* Ocupa toda a altura da tela */
   overflow: hidden; /* Impede o scroll */
   background-color: gray;
+  padding: 0;
+
 }
 
 #root {
