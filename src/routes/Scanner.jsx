@@ -6,11 +6,12 @@ import { useNavigate } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
 
 const Container = styled.div`
-      width: 100vw;
+  width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 
   #reader {
     width: 100%;
@@ -76,7 +77,7 @@ function Scanner() {
   return (
     <Container>
       <div id="reader"></div>
-      {carregando && <Spinner animation="border" role="status"><span className="visually-hidden">Loading...</span></Spinner>}
+      {carregando && <Spinner style={{ position: "absolute" }} animation="border" role="status"><span className="visually-hidden">Loading...</span></Spinner>}
     </Container>
   );
 }
