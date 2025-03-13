@@ -3,7 +3,9 @@ import { Html5Qrcode, Html5QrcodeSupportedFormats } from "html5-qrcode";
 import styled from "styled-components";
 
 const Container = styled.div`
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 function App() {
