@@ -3,31 +3,6 @@ import { Html5Qrcode, Html5QrcodeSupportedFormats } from "html5-qrcode";
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  
-
-  #reader {
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-}
-
-#reader video {
-
-  object-fit: cover; /* Garante que o vídeo cubra toda a tela */
-}
-  
-
-  
-
-
-
 `;
 
 function App() {
@@ -66,7 +41,7 @@ function App() {
       { facingMode: "environment", deviceId: undefined}, // Corrigido para passar a string 'environment'
       {
         fps: 10, // Frames per second
-        qrbox: { height: 100, width: 275 }, // QR code scanning box size
+        qrbox: { height: 200, width: 275 }, // QR code scanning box size
         disableFlip: false,
         videoConstraints: {
           width: { ideal: 1920 },
@@ -74,7 +49,6 @@ function App() {
           frameRate: { ideal: 60 },
           
         },
-        aspectRatio: 9 / 16
         
 
       },
