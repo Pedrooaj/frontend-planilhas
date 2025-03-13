@@ -60,7 +60,7 @@ function Scanner() {
   return (
     <Container>
       {carregando && <p>Carregando Scanner...</p>}
-      <div id="reader" style={{display: carregando ? "none": "block"}}></div>
+      <div id="reader" style={{display: carregando ? "none": ""}}></div>
     </Container>
   );
 }
