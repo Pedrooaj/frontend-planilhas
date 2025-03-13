@@ -61,7 +61,7 @@ function Scanner() {
   return (
     <Container>
       {carregando && <p>Carregando Scanner...</p>}
-      <div id="reader" style={{display: carregando ? "none": "inherit"}}></div>
+      <div id="reader"></div>
     </Container>
   );
 }
