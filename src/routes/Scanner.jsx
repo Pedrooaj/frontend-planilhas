@@ -1,7 +1,6 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Html5Qrcode, Html5QrcodeSupportedFormats } from "html5-qrcode";
 import styled from "styled-components";
-import { toast, ToastContainer } from "react-toastify";
 import { GlobalContext } from "../context/Globalcontext";
 import { useNavigate } from "react-router-dom";
 
@@ -23,15 +22,13 @@ function Scanner() {
     const onScanSuccess = (decodedText, decodedResult) => {
       try {
         if (formats.includes(decodedResult.result.format.format)) {
-          adicionarPatrimonio(decodedText);
+          
           scanner.stop().catch((error) => {
-            toast.warn("Erro ao adicionar patrimônio na lista...", { autoClose: 3000, position: "bottom-center" })
+            console.log("Erro ao encerrar scanner");
           })
+          adicionarPatrimonio(decodedText);
           navigate("/");
-          toast.success(`Patrimônio adicionado a lista: ${decodedText}`, {
-            autoClose: 3000,
-            position: "bottom-center",
-          });
+     
 
         } else {
           console.log("Formato do código de barras não suportado");
@@ -46,9 +43,7 @@ function Scanner() {
         });
       }; */
     };
-    const onScanFailure = (error) => {
-      console.log(`Erro ao realizar Scan: ${error}`);
-    };
+
 
     scanner.start(
       { facingMode: "environment", deviceId: undefined }, // Corrigido para passar a string 'environment'
@@ -62,15 +57,14 @@ function Scanner() {
           frameRate: { ideal: 60 },
         },
       },
-      onScanSuccess,
-      onScanFailure
+      onScanSuccess
     );
   }, []);
 
   return (
     <Container>
       <div id="reader"></div>
-      <ToastContainer />
+
     </Container>
   );
 }

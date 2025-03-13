@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { toast } from "react-toastify";
 
 export const GlobalContext = createContext();
 
@@ -13,10 +14,16 @@ const GlobalProvider = ({children}) => {
       };
       
       const adicionarPatrimonio = (patrimonio) => {
-        setLista((prevLista) => ({
-          ...prevLista,
-          patrimonios: [...prevLista.patrimonios, patrimonio]
-        }));
+        if(!lista.patrimonios.includes(patrimonio)){
+            setLista((prevLista) => ({
+                ...prevLista,
+                patrimonios: [...prevLista.patrimonios, patrimonio]
+              }));
+            toast.success(`Patrimônio Adicionado: ${patrimonio}`, { autoClose: 3000, position: "bottom-center" });
+        }else{
+            toast.warn("Patrimônio ja está na lista...", { autoClose: 3000, position: "bottom-center" })
+        }
+
       };
 
       const adicionarDestino = (destino) => {
