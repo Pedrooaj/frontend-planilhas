@@ -22,6 +22,8 @@ function App() {
       try {
         if(formats.includes(decodedResult.result.format.format)){
           setBarcode(decodedText);
+        }else{
+          console.log("Formato do código de barras não suportado");
         }
       } catch (error) {
         throw error;
