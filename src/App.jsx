@@ -3,9 +3,17 @@ import { Html5Qrcode, Html5QrcodeSupportedFormats } from "html5-qrcode";
 import styled from "styled-components";
 
 const Container = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  
+
+  &#reader{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+  }
 `;
 
 function App() {
@@ -59,8 +67,8 @@ function App() {
         qrbox: { height: 250, width: 250 }, // QR code scanning box size
         disableFlip: false,
         videoConstraints: {
-          width: { ideal: 1920 },
-          height: { ideal: 1080 },
+          width: { ideal: 1080 },
+          height: { ideal: 1920 },
           frameRate: { ideal: 60 }
         },
         
