@@ -66,8 +66,9 @@ function Scanner() {
             (device) => device.kind === "videoinput" && device.label.toLocaleLowerCase().includes("back")
         )
 
+
     scanner.start(
-        { deviceId: backCamera, facingMode: "environment"  },
+        { deviceId: backCamera.deviceId, facingMode: "environment"  },
         {
           fps: 12, // Frames per second
           qrbox: { height: 150, width: 275 }, // QR code scanning box size
