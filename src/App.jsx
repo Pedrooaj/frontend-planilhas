@@ -11,6 +11,9 @@ const Container = styled.div`
   #reader{
     width: 100%;
     height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 `;
 
@@ -50,13 +53,14 @@ function App() {
       { facingMode: "environment", deviceId: undefined}, // Corrigido para passar a string 'environment'
       {
         fps: 10, // Frames per second
-        qrbox: { height: 250, width: 250 }, // QR code scanning box size
+        qrbox: { height: 200, width: 200 }, // QR code scanning box size
         disableFlip: false,
         videoConstraints: {
-          width: { ideal: 1080 },
-          height: { ideal: 1920 },
+          width: { ideal: 1920 },
+          height: { ideal: 1080 },
           frameRate: { ideal: 60 }
         },
+        aspectRatio: 9 / 16
         
 
       },
