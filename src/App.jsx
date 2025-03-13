@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "./App.css";
 import { Html5Qrcode, Html5QrcodeSupportedFormats } from "html5-qrcode";
 import styled from "styled-components";
 
@@ -61,7 +60,8 @@ function App() {
           width: { ideal: 1920 },
           height: { ideal: 1080 },
           frameRate: { ideal: 60 }
-        }
+        },
+        
 
       },
       onScanSuccess,
@@ -73,7 +73,6 @@ function App() {
   return (
     <Container>
       <div id="reader" ></div>
-      <h1>{barcode ? `Código de barras detectado: ${barcode}` : "Scaneie o codigo de barras"}</h1>
     </Container>
   );
 }
