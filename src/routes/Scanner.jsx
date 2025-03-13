@@ -19,12 +19,13 @@ function Scanner() {
       Html5QrcodeSupportedFormats.ITF,
     ];
 
-    const onScanSuccess = (decodedText, decodedResult) => {
+    const onScanSuccess = async (decodedText, decodedResult) => {
       try {
         if (formats.includes(decodedResult.result.format.format)) {
           adicionarPatrimonio(decodedText);
+          await scanner.stop();
           navigate("/");
-          scanner.stop();
+          
         } else {
           console.log("Formato do código de barras não suportado");
         }
@@ -60,7 +61,7 @@ function Scanner() {
   return (
     <Container>
       {carregando && <p>Carregando Scanner...</p>}
-      <div id="reader" style={{display: carregando ? "none": ""}}></div>
+      <div id="reader" style={{display: carregando ? "none": "inherit"}}></div>
     </Container>
   );
 }
