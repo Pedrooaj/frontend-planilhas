@@ -25,10 +25,4 @@ body {
   align-items: center;
 }
 
-.qrbox {
-  width: 250px; /* Tamanho da caixa de QR */
-  height: 250px;
-  border: 2px solid red;
-  position: absolute;
-  z-index: 10;
-}
+
