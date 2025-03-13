@@ -76,7 +76,7 @@ function Scanner() {
         { deviceId: backCamera.deviceId},
         {
           fps: 12, // Frames per second
-          qrbox: { height: 150, width: 350 }, // QR code scanning box size
+          qrbox: { height: 150, width: 275 }, // QR code scanning box size
           disableFlip: false,
           videoConstraints: {
             width: { ideal: 1920, min: 1280 },

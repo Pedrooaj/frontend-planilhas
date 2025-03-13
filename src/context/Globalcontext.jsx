@@ -27,6 +27,7 @@ const GlobalProvider = ({ children }) => {
       );
     }else if(!["60", "87", "83"].includes(patrimonio.slice(0,2))){
         toast.error("Leitura inválida conforme o começo dos patrimônios!", { autoClose: 3000, position: "bottom-center" })
+
     }else{
         if (!lista.patrimonios.includes(patrimonio)) {
             setLista((prevLista) => ({
