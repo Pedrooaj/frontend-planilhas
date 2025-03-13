@@ -16,14 +16,13 @@ body {
 #root {
   width: 100%;
   height: 100%;
+  position: relative;
 }
 
 #reader {
   width: 100vw; /* Ocupa toda a largura da tela */
   height: 100vh; /* Ocupa toda a altura da tela */
-  position: absolute; /* A posição foi alterada para absolute */
-  top: 0;
-  left: 0;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
