@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Html5Qrcode, Html5QrcodeSupportedFormats } from "html5-qrcode";
 import styled from "styled-components";
 import { GlobalContext } from "../context/Globalcontext";
@@ -8,6 +8,7 @@ const Container = styled.div``;
 
 function Scanner() {
     const { adicionarPatrimonio } = useContext(GlobalContext);
+    const [carregando, setCarregando] = useState(true);
     const navigate = useNavigate();
 
 
@@ -40,21 +41,23 @@ function Scanner() {
       }; */
     };
 
-
-    scanner.start(
-      { facingMode: "environment", deviceId: undefined }, // Corrigido para passar a string 'environment'
-      {
-        fps: 12, // Frames per second
-        qrbox: { height: 150, width: 275 }, // QR code scanning box size
-        disableFlip: false,
-        videoConstraints: {
-          width: { ideal: 1920, min: 1280 },
-          height: { ideal: 1080, min: 720 },
-          frameRate: { ideal: 60 },
-        },
-      },
-      onScanSuccess
-    );
+    setTimeout(() => {
+        scanner.start(
+            { facingMode: "environment", deviceId: undefined }, // Corrigido para passar a string 'environment'
+            {
+              fps: 12, // Frames per second
+              qrbox: { height: 150, width: 275 }, // QR code scanning box size
+              disableFlip: false,
+              videoConstraints: {
+                width: { ideal: 1920, min: 1280 },
+                height: { ideal: 1080, min: 720 },
+                frameRate: { ideal: 60 },
+              },
+            },
+            onScanSuccess
+          ).then(() => setCarregando(false)).catch((err) => console.error("Erro ao iniciar Scanner: ", err));
+    }, 500)
+  
 
     return () => {
         scanner.stop()
@@ -66,7 +69,7 @@ function Scanner() {
 
   return (
     <Container>
-      <div id="reader"></div>
+      {carregando ? <p>Carregando Scanner...</p> : <div id="reader"></div>}
 
     </Container>
   );
