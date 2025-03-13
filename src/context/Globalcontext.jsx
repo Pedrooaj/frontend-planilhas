@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import { toast } from "react-toastify";
 
+
 export const GlobalContext = createContext();
 
 const GlobalProvider = ({ children }) => {
@@ -18,16 +19,12 @@ const GlobalProvider = ({ children }) => {
       data: novaData,
     }));
   };
-
+  const erroToast = toast.error("Patrimônio Inválido",{ autoClose: 3000, position: "bottom-center" });
   const adicionarPatrimonio = (patrimonio) => {
     if (patrimonio.length > 8) {
-      toast.error(
-        "Não e possivel adicionar patrimônios maiores que 8 digitos",
-        { autoClose: 3000, position: "bottom-center" }
-      );
+        erroToast()
     }else if(!["60", "87", "83"].includes(patrimonio.slice(0,2))){
-        toast.error("Leitura inválida conforme o começo dos patrimônios!", { autoClose: 3000, position: "bottom-center" })
-
+        erroToast()
     }else{
         if (!lista.patrimonios.includes(patrimonio)) {
             setLista((prevLista) => ({
