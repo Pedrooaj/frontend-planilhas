@@ -3,10 +3,7 @@ import { Html5Qrcode, Html5QrcodeSupportedFormats } from "html5-qrcode";
 import styled from "styled-components";
 import { toast, ToastContainer } from "react-toastify";
 
-const Container = styled.div`
-
-
-`;
+const Container = styled.div``;
 
 function App() {
   const [barcode, setBarcode] = useState("");
@@ -16,17 +13,23 @@ function App() {
 
     const formats = [
       Html5QrcodeSupportedFormats.CODE_128,
-      Html5QrcodeSupportedFormats.ITF
-    ]
+      Html5QrcodeSupportedFormats.ITF,
+    ];
 
     const onScanSuccess = (decodedText, decodedResult) => {
       try {
-        if(formats.includes(decodedResult.result.format.format)){
+        if (
+          formats.includes(
+            decodedResult.result.format.format && decodedText !== barcode
+          )
+        ) {
           setBarcode(decodedText);
-          if(decodedText !== barcode){
-            toast.success(`Patrimônio adicionado a lista: ${decodedText}`, { autoClose: 3000, position: "bottom-center" })
-          }
-        }else{
+
+          toast.success(`Patrimônio adicionado a lista: ${decodedText}`, {
+            autoClose: 3000,
+            position: "bottom-center",
+          });
+        } else {
           console.log("Formato do código de barras não suportado");
         }
       } catch (error) {
@@ -38,13 +41,13 @@ function App() {
           console.error("Erro ao parar Scanner: ", err);
         });
       }; */
-      }
+    };
     const onScanFailure = (error) => {
       console.log(`Erro ao realizar Scan: ${error}`);
     };
 
     scanner.start(
-      { facingMode: "environment", deviceId: undefined}, // Corrigido para passar a string 'environment'
+      { facingMode: "environment", deviceId: undefined }, // Corrigido para passar a string 'environment'
       {
         fps: 12, // Frames per second
         qrbox: { height: 150, width: 275 }, // QR code scanning box size
@@ -54,18 +57,15 @@ function App() {
           height: { ideal: 1080 },
           frameRate: { ideal: 60 },
         },
-        
-
       },
       onScanSuccess,
       onScanFailure
     );
-
   }, []);
 
   return (
     <Container>
-      <div id="reader" ></div>
+      <div id="reader"></div>
       <ToastContainer />
     </Container>
   );
