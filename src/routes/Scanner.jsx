@@ -62,9 +62,14 @@ function Scanner() {
 
 
     navigator.mediaDevices.enumerateDevices().then((devices) => {
-        const backCamera = devices.find( 
-            (device) => device.kind === "videoinput" && device.label.toLocaleLowerCase().includes("back")
-        )
+        const cameras = devices.filter((device) => device.kind == "videoinput");
+        if (cameras.length === 0) {
+            console.error("Nenhuma câmera disponível.");
+            return;
+          }
+          const backCamera = cameras.find((device) =>
+            device.label.toLowerCase().includes("back")
+          ) || cameras[0];
 
 
     scanner.start(
@@ -82,9 +87,11 @@ function Scanner() {
         },
         onScanSuccess
       )
-      .then(() => setCarregando(false));
+      
   
-    })
+    }).finally(()=> setCarregando(false))
+        
+   
     }, []);
 
   return (
