@@ -19,11 +19,15 @@ function App() {
     ]
 
     const onScanSuccess = (decodedText, decodedResult) => {
-      if(formats.includes(decodedResult.format)){
+      if(formats.includes(decodedResult.result.format.format)){
         setBarcode(decodedText);
+
+
       }else{
         console.warn("Formato não permitido")
       }
+
+      
       
 
 
