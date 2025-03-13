@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { Html5Qrcode } from "html5-qrcode";
+import { Html5Qrcode, Html5QrcodeSupportedFormats } from "html5-qrcode";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -26,12 +26,18 @@ function App() {
       console.log(`Erro ao realizar Scan: ${error}`);
     };
 
+
+
     scanner.start(
       { facingMode: "environment" }, // Corrigido para passar a string 'environment'
       {
         fps: 10, // Frames per second
         qrbox: { height: 250, width: 250 }, // QR code scanning box size
         disableFlip: false,
+        supportedScanTypes: [
+          Html5QrcodeSupportedFormats.ITF,    // Apenas QR Codes
+          Html5QrcodeSupportedFormats.CODE_128,   // Apenas Code 128
+        ]
       },
       onScanSuccess,
       onScanFailure
