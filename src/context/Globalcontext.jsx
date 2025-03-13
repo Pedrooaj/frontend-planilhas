@@ -3,61 +3,85 @@ import { toast } from "react-toastify";
 
 export const GlobalContext = createContext();
 
-const GlobalProvider = ({children}) => {
-    const [lista, setLista] = useState({ data: new Date().toISOString().split("T")[0], destino: "", origem: "", patrimonios: [], observacao: "" });
+const GlobalProvider = ({ children }) => {
+  const [lista, setLista] = useState({
+    data: new Date().toISOString().split("T")[0],
+    destino: "",
+    origem: "",
+    patrimonios: [],
+    observacao: "",
+  });
 
-    const atualizarData = (novaData) => {
-        setLista((prevLista) => ({
-          ...prevLista,
-          data: novaData
-        }));
-      };
-      
-      const adicionarPatrimonio = (patrimonio) => {
-        if(!lista.patrimonios.includes(patrimonio)){
+  const atualizarData = (novaData) => {
+    setLista((prevLista) => ({
+      ...prevLista,
+      data: novaData,
+    }));
+  };
+
+  const adicionarPatrimonio = (patrimonio) => {
+    if (patrimonio.length > 8) {
+      toast.error(
+        "Não e possivel adicionar patrimônios maiores que 8 digitos",
+        { autoClose: 3000, position: "bottom-center" }
+      );
+    }else if(!["60", "87", "83"].includes(patrimonio.slice(0,2))){
+        toast.error("Leitura inválida conforme o começo dos patrimônios!", { autoClose: 3000, position: "bottom-center" })
+    }else{
+        if (!lista.patrimonios.includes(patrimonio)) {
             setLista((prevLista) => ({
-                ...prevLista,
-                patrimonios: [...prevLista.patrimonios, patrimonio]
-              }));
-            toast.success(`Patrimônio Adicionado: ${patrimonio}`, { autoClose: 3000, position: "bottom-center" });
-        }else{
-            toast.warn("Patrimônio ja está na lista...", { autoClose: 3000, position: "bottom-center" })
-        }
-
-      };
-
-      const adicionarDestino = (destino) => {
-        setLista((prevLista) => ({
-            ...prevLista,
-            destino: destino
-        }))
-      }
-
-      const adicionarOrigem = (origem) => {
-        setLista((prevLista) => ({
-            ...prevLista,
-            origem: origem
-        }))
-      }
-      
-      const adicionarObservação = (observacao) => {
-        setLista((prevLista) => ({
-            ...prevLista,
-            observacao: observacao
-        }))
-      }
-
-    const values = {
-        lista,
-        setLista,
-        atualizarData,
-        adicionarPatrimonio,
-        adicionarDestino,
-        adicionarOrigem,
-        adicionarObservação
+              ...prevLista,
+              patrimonios: [...prevLista.patrimonios, patrimonio],
+            }));
+            toast.success(`Patrimônio Adicionado: ${patrimonio}`, {
+              autoClose: 3000,
+              position: "bottom-center",
+            });
+          } else {
+            toast.warn("Patrimônio ja está na lista...", {
+              autoClose: 3000,
+              position: "bottom-center",
+            });
+          }
     }
 
-    return <GlobalContext.Provider value={values}>{children}</GlobalContext.Provider>
-}
+   
+  };
+
+  const adicionarDestino = (destino) => {
+    setLista((prevLista) => ({
+      ...prevLista,
+      destino: destino,
+    }));
+  };
+
+  const adicionarOrigem = (origem) => {
+    setLista((prevLista) => ({
+      ...prevLista,
+      origem: origem,
+    }));
+  };
+
+  const adicionarObservação = (observacao) => {
+    setLista((prevLista) => ({
+      ...prevLista,
+      observacao: observacao,
+    }));
+  };
+
+  const values = {
+    lista,
+    setLista,
+    atualizarData,
+    adicionarPatrimonio,
+    adicionarDestino,
+    adicionarOrigem,
+    adicionarObservação,
+  };
+
+  return (
+    <GlobalContext.Provider value={values}>{children}</GlobalContext.Provider>
+  );
+};
 
 export default GlobalProvider;
