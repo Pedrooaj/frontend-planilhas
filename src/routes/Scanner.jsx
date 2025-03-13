@@ -12,10 +12,7 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
 
-    #reader{
-        width: 100%;
-        
-    }
+
 `;
 
 function Scanner() {
