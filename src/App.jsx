@@ -3,6 +3,8 @@ import { Html5Qrcode, Html5QrcodeSupportedFormats } from "html5-qrcode";
 import styled from "styled-components";
 
 const Container = styled.div`
+
+
 `;
 
 function App() {
@@ -47,7 +49,6 @@ function App() {
           width: { ideal: 1920 },
           height: { ideal: 1080 },
           frameRate: { ideal: 60 },
-          
         },
         
 
@@ -61,7 +62,9 @@ function App() {
   return (
     <Container>
       <div id="reader" ></div>
-   
+      {
+        barcode ? <p> Código de barras: {barcode}</p> : null
+      }
     </Container>
   );
 }
