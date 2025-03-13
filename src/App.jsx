@@ -64,7 +64,14 @@ function App() {
       onScanFailure
     );
 
-
+    // Limpar o scanner ao desmontar o componente (para evitar vazamentos de memória)
+    return () => {
+      scanner.stop().then(() => {
+        console.log("Scanner parado com sucesso");
+      }).catch((err) => {
+        console.error("Erro ao parar Scanner: ", err);
+      });
+    };
   }, [barcode, isScanning]); // Dependência no `barcode` e `isScanning`
 
   return (
