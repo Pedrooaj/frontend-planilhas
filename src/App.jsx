@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Html5Qrcode, Html5QrcodeSupportedFormats } from "html5-qrcode";
 import styled from "styled-components";
+import { toast, ToastContainer } from "react-toastify";
 
 const Container = styled.div`
 
@@ -22,18 +23,19 @@ function App() {
       try {
         if(formats.includes(decodedResult.result.format.format)){
           setBarcode(decodedText);
+          toast.success(`Patrimônio adicionado a lista: ${decodedText}`, { autoClose: 3000, position: "bottom-center" })
         }else{
           console.log("Formato do código de barras não suportado");
         }
       } catch (error) {
         throw error;
-      } finally {
+      } /* finally {
         scanner.stop().then(() => {
           console.log("Scanner parado com sucesso");
         }).catch((err) => {
           console.error("Erro ao parar Scanner: ", err);
         });
-      };
+      }; */
       }
     const onScanFailure = (error) => {
       console.log(`Erro ao realizar Scan: ${error}`);
@@ -62,9 +64,7 @@ function App() {
   return (
     <Container>
       <div id="reader" ></div>
-      {
-        barcode ? <p> Código de barras: {barcode}</p> : null
-      }
+      <ToastContainer />
     </Container>
   );
 }
