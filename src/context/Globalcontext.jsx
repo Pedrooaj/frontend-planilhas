@@ -22,10 +22,10 @@ const GlobalProvider = ({ children }) => {
 
   const adicionarPatrimonio = (patrimonio) => {
     if (patrimonio.length > 8) {
-      toast.error("Patrimônio Inválido", { autoClose: 3000, position: "bottom-center" });
+      toast.error("Patrimônio deve ter no máximo 8 caracteres", { autoClose: 3000, position: "bottom-center" });
     } else if (!["60", "87", "83", "087"].some((prefixo) => patrimonio.startsWith(prefixo))) {
       // verifica se o prefixo e válido
-      toast.error("Patrimônio Inválido 2", { autoClose: 3000, position: "bottom-center" });
+      toast.error(`Patrimônio "${patrimonio}" Inválido `, { autoClose: 3000, position: "bottom-center" });
     }
 
 
