@@ -60,9 +60,7 @@ function Scanner() {
       const cameras = devices.filter((device) => device.kind === "videoinput");
     
       // Tenta encontrar uma câmera traseira pelo nome
-      const backCamera = cameras.find((device) =>
-        /back|rear|traseira|environment/i.test(device.label)
-      ) || cameras[cameras.length - 1]; // Se não encontrar, pega a última
+      const backCamera = cameras.length > 1 ? cameras[1] : cameras[0]
     
       if (!backCamera) {
         console.error("Nenhuma câmera traseira encontrada!");
