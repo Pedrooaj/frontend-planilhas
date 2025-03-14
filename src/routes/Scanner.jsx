@@ -23,7 +23,6 @@ const Container = styled.div`
     height: 100% !important;
     object-fit: cover;
   }
-    
 `;
 
 function Scanner() {
@@ -43,11 +42,11 @@ function Scanner() {
       try {
         if (formats.includes(decodedResult.result.format.format)) {
           adicionarPatrimonio(decodedText);
-          await scanner.stop()
-          .then(() => console.log("Scanner fechado com sucesso"))
-          .catch((error) => console.log("Erro ao chegar scanner ", error));
+          await scanner
+            .stop()
+            .then(() => console.log("Scanner fechado com sucesso"))
+            .catch((error) => console.log("Erro ao chegar scanner ", error));
           navigate("/");
-          
         } else {
           console.log("Formato do código de barras não suportado");
         }
@@ -56,24 +55,9 @@ function Scanner() {
       }
     };
 
-
-        
-  
-
-
-    navigator.mediaDevices.enumerateDevices().then((devices) => {
-        const cameras = devices.filter((device) => device.kind == "videoinput");
-        if (cameras.length === 0) {
-            console.error("Nenhuma câmera disponível.");
-            return;
-          }
-          const backCamera = cameras.find((device) =>
-            device.label.toLowerCase().includes("back")
-          ) || cameras[cameras.length - 1];
-
-
-    scanner.start(
-        { deviceId: backCamera.deviceId},
+    scanner
+      .start(
+        { facingMode: "environment" },
         {
           fps: 12, // Frames per second
           qrbox: { height: 150, width: 275 }, // QR code scanning box size
@@ -82,22 +66,25 @@ function Scanner() {
             width: { ideal: 1920, min: 1280 },
             height: { ideal: 1080, min: 720 },
             frameRate: { ideal: 60 },
-            
           },
         },
         onScanSuccess
       )
-      
-  
-    }).finally(()=> setCarregando(false))
-        
-   
-    }, []);
+      .finally(() => setCarregando(false));
+  }, []);
 
   return (
     <Container>
       <div id="reader"></div>
-      {carregando && <Spinner style={{ position: "absolute" }} animation="border" role="status"><span className="visually-hidden">Loading...</span></Spinner>}
+      {carregando && (
+        <Spinner
+          style={{ position: "absolute" }}
+          animation="border"
+          role="status"
+        >
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      )}
     </Container>
   );
 }
