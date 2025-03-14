@@ -25,7 +25,7 @@ const GlobalProvider = ({ children }) => {
       toast.error("Patrimônio deve ter no máximo 8 caracteres", { autoClose: 3000, position: "bottom-center" });
     } else if (!["60", "87", "83", "087"].some((prefixo) => patrimonio.startsWith(prefixo))) {
       // verifica se o prefixo e válido
-      toast.error(`<span>Patrimônio <b>${patrimonio}</b> Inválido </span>`, { autoClose: 3000, position: "bottom-center" });
+      toast.error(<span>Patrimônio <b>${patrimonio}</b> Inválido </span>, { autoClose: 3000, position: "bottom-center" });
     }
 
 
@@ -43,7 +43,7 @@ const GlobalProvider = ({ children }) => {
         ...prevLista,
         patrimonios: [...prevLista.patrimonios, patrimonio],
       }));
-      toast.success(`<span>Patrimônio Adicionado: <b>${patrimonio}</b></span>`, {
+      toast.success(<span>Patrimônio Adicionado: <b>${patrimonio}</b></span>, {
         autoClose: 3000,
         position: "bottom-center",
       });
