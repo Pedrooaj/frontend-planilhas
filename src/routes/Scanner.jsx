@@ -55,21 +55,38 @@ function Scanner() {
       }
     };
 
+
+    navigator.mediaDevices.enumerateDevices().then((devices) => {
+      const cameras = devices.filter((device) => device.kind === "videoinput");
+    
+      // Tenta encontrar uma câmera traseira pelo nome
+      const backCamera = cameras.find((device) =>
+        /back|rear|traseira|environment/i.test(device.label)
+      ) || cameras[cameras.length - 1]; // Se não encontrar, pega a última
+    
+      if (!backCamera) {
+        console.error("Nenhuma câmera traseira encontrada!");
+        return;
+      }
+
+
+
     scanner
       .start(
-        { facingMode: "environment" },
+        { deviceId: backCamera.deviceId },
         {
           fps: 12, // Frames per second
           qrbox: { height: 150, width: 275 }, // QR code scanning box size
           disableFlip: false,
           videoConstraints: {
-            width: { ideal: 1920, min: 1280 },
-            height: { ideal: 1080, min: 720 },
+            width: { exact: 1920, min: 1280 },
+            height: { exact: 1080, min: 720 },
             frameRate: { ideal: 60 },
           },
         },
         onScanSuccess
       )
+    })
       .finally(() => setCarregando(false));
   }, []);
 
