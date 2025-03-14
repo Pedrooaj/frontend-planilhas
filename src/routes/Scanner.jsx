@@ -69,7 +69,7 @@ function Scanner() {
           }
           const backCamera = cameras.find((device) =>
             device.label.toLowerCase().includes("back")
-          ) || cameras[0];
+          ) || cameras[cameras.length - 1];
 
 
     scanner.start(
