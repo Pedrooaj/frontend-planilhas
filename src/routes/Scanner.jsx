@@ -82,6 +82,7 @@ function Scanner() {
             width: { exact: 1920, min: 1280 },
             height: { exact: 1080, min: 720 },
             frameRate: { ideal: 60 },
+            facingMode: { exact: "environment" },
           },
         },
         onScanSuccess
