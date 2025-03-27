@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 
 export const GlobalContext = createContext();
 
+
 const GlobalProvider = ({ children }) => {
   const [lista, setLista] = useState({
     data: new Date().toISOString().split("T")[0],
@@ -77,12 +78,34 @@ const GlobalProvider = ({ children }) => {
     }));
   };
 
+  
+
   const adicionarObservação = (observacao) => {
     setLista((prevLista) => ({
       ...prevLista,
       observacao: observacao,
     }));
   };
+
+  const removerPatrimonio = (patrimonio) => {
+    if(!lista.patrimonios.includes(patrimonio)){
+      toast.warn("Patrimônio não encontrado na lista.", {
+        autoClose: 3000,
+        position: "bottom-center"
+      })
+      return;
+    }
+
+    setLista((prevLista) => ({
+      ...prevLista,
+      patrimonios: prevLista.patrimonios.filter((p) => p !== patrimonio)
+    }))
+
+    toast.success(<span>Patrimônio Removido: <b>{patrimonio}</b></span>, {
+      autoClose: 3000,
+      position: "bottom-center"
+    })
+  }
 
   const values = {
     lista,
@@ -92,6 +115,7 @@ const GlobalProvider = ({ children }) => {
     adicionarDestino,
     adicionarOrigem,
     adicionarObservação,
+    removerPatrimonio
   };
 
   return (
