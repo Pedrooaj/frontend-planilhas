@@ -35,8 +35,7 @@ const Lista = () => {
 
             <h1>Lista de patrimônios</h1>
             
-            {
-                lista.patrimonios.length > 0 ?   
+        
                 <Table responsive striped="columns">
                 <thead>
                     <tr>
@@ -50,8 +49,8 @@ const Lista = () => {
                     lista.patrimonios.map((item, index) => <tr key={index}><td style={{textAlign: "center"}}>{item}</td> <td style={{ textAlign: "center" }}><FaRegTrashCan onClick={() => removerPatrimonio(item) } style={{ cursor: "pointer" }} /></td></tr>)
                 }
             </tbody>
-            </Table> : null
-            }
+            </Table> 
+            
  
             
             <Button variant="primary" onClick={() => navigate("/scanner")} >
