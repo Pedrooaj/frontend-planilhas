@@ -56,47 +56,24 @@ function Scanner() {
     };
 
 
-    navigator.mediaDevices.enumerateDevices().then((devices) => {
-      const cameras = devices.filter((device) => device.kind === "videoinput");
-    
-      // Tenta encontrar uma câmera traseira pelo nome
-      const backCamera = cameras.find((device) =>
-        /back|rear|traseira|environment/i.test(device.label)
-      ) || cameras[cameras.length - 1]; // Se não encontrar, pega a última
-    
-      if (!backCamera) {
-        console.error("Nenhuma câmera traseira encontrada!");
-        return;
-      }
-
-      navigator.mediaDevices.enumerateDevices().then((devices) => {
-        const cameras = devices.filter((device) => device.kind === "videoinput");
-
-        if (cameras.length === 0) {
-          console.log("Nenhuma câmera encontrada.");
-          return;
-        }
-
-        const backCamera = cameras.length > 1 ? cameras[1]: cameras[0]
 
     scanner
-      .start(
-        { deviceId: backCamera.deviceId },
+      .start({ 
+        width: { ideal: 1920, min: 1280 },
+        height: { ideal: 1080, min: 720 },
+        frameRate: { ideal: 60, min: 30 },
+        facingMode: { ideal: "environment" }
+      },
         {
-          fps: 12, // Frames per second
-          qrbox: { height: 150, width: 275 }, // QR code scanning box size
+          fps: 12, 
+          qrbox: { height: 150, width: 275 }, 
           disableFlip: false,
-          videoConstraints: {
-            width: { ideal: 1920, min: 1280 },
-            height: { ideal: 1080, min: 720 },
-            frameRate: { ideal: 60 },
-          },
+
         },
         onScanSuccess
-      )
-    })
-  }).finally(() => setCarregando(false));
-  }, []);
+      ).finally(() => setCarregando(false));
+    }, [])
+ 
 
   return (
     <Container>
