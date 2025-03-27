@@ -10,7 +10,7 @@ const GlobalProvider = ({ children }) => {
     data: new Date().toISOString().split("T")[0],
     destino: "",
     origem: "",
-    patrimonios: [],
+    patrimonios: [123],
     observacao: "",
   });
 

@@ -2,9 +2,10 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components"
 import { GlobalContext } from "../context/Globalcontext";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, Form } from "react-bootstrap";
 import { CiBarcode } from "react-icons/ci";
 import { FaRegTrashCan } from "react-icons/fa6";
+
 
 
 const Container = styled.div`
@@ -20,7 +21,7 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 5px;
+    gap: 15px;
     hr{
         width: 100%;
     }
@@ -40,36 +41,42 @@ const Container = styled.div`
 `;
 
 const Lista = () => {
-    const { lista, removerPatrimonio } = useContext(GlobalContext);
+    const { lista, removerPatrimonio, atualizarData } = useContext(GlobalContext);
     const navigate = useNavigate();
-    
+
     return (
         <Container>
 
+            <Form.Group controlId="dataSelecionada">
+                <h1 style={{ textAlign: "center"}}>Data</h1>
+                <Form.Control
+                    type="date"
+                    value={lista.data}
+                    onChange={(e) => atualizarData(e.target.value)}
+                />
+            </Form.Group>
 
 
-            
             {
-                lista.patrimonios.length > 0 ? 
-                <Table id="tabela" striped="columns">
-                    <thead>
-                        <tr>
-                        
-                        <th style={{textAlign: "center"}} colSpan={2}>Patrimônios</th>
-     
-                        </tr>
-                    </thead>
-                    <tbody>
-                {
-                    lista.patrimonios.map((item, index) => <tr key={index}><td style={{textAlign: "center"}}>{item}</td> <td onClick={() => removerPatrimonio(item) }  style={{ textAlign: "center" }}><FaRegTrashCan style={{ cursor: "pointer" }} /></td></tr>)
-                }
-                    </tbody>
-            </Table> : <p>Lista vazia...</p>
+                lista.patrimonios.length > 0 ?
+                    <Table id="tabela" striped="columns">
+                        <thead>
+                            <tr>
+
+                                <th style={{ textAlign: "center" }} colSpan={2}>Patrimônios</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                lista.patrimonios.map((item, index) => <tr key={index}><td style={{ textAlign: "center" }}>{item}</td><td onClick={() => removerPatrimonio(item)} style={{ textAlign: "center" }}><FaRegTrashCan style={{ cursor: "pointer" }} /></td></tr>)
+                            }
+                        </tbody>
+                    </Table> : <p>Lista vazia...</p>
             }
-                
-            
- 
-            
+
+
+
+
             <Button variant="primary" onClick={() => navigate("/scanner")} >
                 Obter patrimônio <br /> <CiBarcode size={30} />
             </Button>
