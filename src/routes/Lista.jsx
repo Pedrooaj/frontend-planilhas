@@ -61,7 +61,7 @@ const Lista = () => {
                     </thead>
                     <tbody>
                 {
-                    lista.patrimonios.map((item, index) => <tr key={index}><td style={{textAlign: "center"}}>{item}</td> <td style={{ textAlign: "center" }}><FaRegTrashCan onClick={() => removerPatrimonio(item) } style={{ cursor: "pointer" }} /></td></tr>)
+                    lista.patrimonios.map((item, index) => <tr key={index}><td style={{textAlign: "center"}}>{item}</td> <td onClick={() => removerPatrimonio(item) }  style={{ textAlign: "center" }}><FaRegTrashCan style={{ cursor: "pointer" }} /></td></tr>)
                 }
                     </tbody>
             </Table> : <p>Lista vazia...</p>
