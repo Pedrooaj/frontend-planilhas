@@ -59,10 +59,8 @@ function Scanner() {
 
     scanner
       .start({ 
-        width: { ideal: 1920, min: 1280 },
-        height: { ideal: 1080, min: 720 },
-        frameRate: { ideal: 60, min: 30 },
-        facingMode: { ideal: "environment" }
+        facingMode: "environment",
+
       },
         {
           fps: 12, 
