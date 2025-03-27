@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components"
 import { GlobalContext } from "../context/Globalcontext";
 import { Table, Button } from "react-bootstrap";
-import { FaArrowRight } from "react-icons/fa";
+import { CiBarcode } from "react-icons/ci";
 import { FaRegTrashCan } from "react-icons/fa6";
 
 
@@ -14,6 +14,7 @@ const Container = styled.div`
     background-size: cover;
     width: 100%;
     height: 100%;
+    padding: 10px;
 
     display: flex;
     align-items: center;
@@ -23,6 +24,19 @@ const Container = styled.div`
     hr{
         width: 100%;
     }
+
+    & #tabela{
+        width: 80%;
+        max-height: 70%;
+        margin: 0;
+    }
+    & p{
+        font-size: 1.5em;
+        text-align: center;
+    }
+
+
+
 `;
 
 const Lista = () => {
@@ -33,15 +47,15 @@ const Lista = () => {
         <Container>
 
 
-            <h1>Lista de patrimônios</h1>
+
             
             {
                 lista.patrimonios.length > 0 ? 
-                <Table responsive striped="columns">
+                <Table id="tabela" striped="columns">
                     <thead>
                         <tr>
                         
-                        <th colSpan={2}>Patrimônio</th>
+                        <th style={{textAlign: "center"}} colSpan={2}>Patrimônios</th>
      
                         </tr>
                     </thead>
@@ -50,14 +64,14 @@ const Lista = () => {
                     lista.patrimonios.map((item, index) => <tr key={index}><td style={{textAlign: "center"}}>{item}</td> <td style={{ textAlign: "center" }}><FaRegTrashCan onClick={() => removerPatrimonio(item) } style={{ cursor: "pointer" }} /></td></tr>)
                 }
                     </tbody>
-            </Table> : <h1>Lista vazia...</h1>
+            </Table> : <p>Lista vazia...</p>
             }
                 
             
  
             
             <Button variant="primary" onClick={() => navigate("/scanner")} >
-                Obter patrimônio <FaArrowRight />
+                Obter patrimônio <br /> <CiBarcode size={30} />
             </Button>
         </Container>
     )
